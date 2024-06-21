@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import './App.css'
 import Imageheader from './components/imageheader'
+import Input from './components/Input';
+import Button from './components/Button';
 
 function App() {
 
@@ -28,15 +30,16 @@ function App() {
         <Imageheader/>
         <div className='w-[350px]'>
           <form onSubmit={handlesubmit} className='mb-5'>
-          <input value={inputvalue}  onChange={(e)=>setinputvalue(e.target.value)} type="text" className='w-full p-2 rounded-sm mb-2 text-black' />
-          <button type='submit' className='bg-gray-700 w-full p-2'>Add</button>
+          <Input inputvalue={inputvalue} setinputvalue={setinputvalue} />
+            <Button className='bg-gray-700 w-full p-2' title='Add'/>
+         
           </form >                                      
           <div className='h-52 overflow-y-auto'>
             {items.map((data)=>(
-
             <div key={data.id} className='flex justify-between items-center border border-slate-600 mb-2'>
               <p>{data.title}</p>
-              <button onClick={()=>handledelete(data.id)} className='bg-green-950 rounded-sm p-2'>delete</button>
+           
+              <Button onClick={()=>handledelete(data.id)}  className='bg-green-950 rounded-sm p-2' title={'delete'}/>
             </div>
             ))}
           </div>
