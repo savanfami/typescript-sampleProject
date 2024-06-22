@@ -1,17 +1,16 @@
 
 import { useState } from 'react'
 import './App.css'
-import Imageheader from './components/imageheader'
+import Imageheader from './components/imageheader'  
 import Input from './components/Input';
 import Button from './components/Button';
+import { type Items } from './types/utils';
+import Itemlist from './components/Itemlist';
 
 function App() {
 
-  type items={
-    title:string;
-    id:string
-  }
-  const[items,setItems]=useState<items[]>([])
+
+  const[items,setItems]=useState<Items[]>([])
   const[inputvalue,setinputvalue]=useState<string>('')
 
   const handlesubmit=(event:React.FormEvent)=>{
@@ -20,9 +19,7 @@ function App() {
     setinputvalue('')
   }
 
-  const handledelete=(value:string)=>{
-    setItems(prev=>prev.filter(data=>data.id!==value))
-  }
+
 
   return (
     <>
@@ -35,13 +32,7 @@ function App() {
          
           </form >                                      
           <div className='h-52 overflow-y-auto'>
-            {items.map((data)=>(
-            <div key={data.id} className='flex justify-between items-center border border-slate-600 mb-2'>
-              <p>{data.title}</p>
-           
-              <Button onClick={()=>handledelete(data.id)}  className='bg-green-950 rounded-sm p-2' title={'delete'}/>
-            </div>
-            ))}
+          <Itemlist items={items} setItems={setItems}/>
           </div>
 
         </div>
